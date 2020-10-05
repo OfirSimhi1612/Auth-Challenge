@@ -29,12 +29,14 @@ describe('Admin Tests', () => {
         expect(typeof adminLoginRes.accessToken).toBe('string')
         expect(adminLoginRes.accessToken.length > 100).toBe(true)
 
+
         const { body: infoRes } = await request(server)
             .get('/api/v1/information')
             .set('authorization', `bearer ${adminLoginRes.accessToken}`)
             .expect(200)
 
         expect(infoRes.length > 0).toBe(true)
+
 
         const { body: getAllUsersRes } = await request(server)
             .get('/api/v1/users')
